@@ -1528,7 +1528,7 @@ def lri_balanced_player_game_all_pijk_upper_08(arr_pl_M_T_vars_init,
     
     k_stop_learning_LRIx = dico_k_stop_learnings[t_periods-1]["k_stop"]
     print("k_stop_learning_LRIx = {}".format(k_stop_learning_LRIx))
-    profils_stabilisation_LRIx = arr_pl_M_T_K_vars[
+    profils_stabilisation_LRIx = arr_pl_M_T_K_vars_modif[
                                     :, t_periods-1, k_stop_learning_LRIx, 
                                     fct_aux.AUTOMATE_INDEX_ATTRS["mode_i"]]
     bool_equilibrium_nash_LRIx = all(df_nash.loc[:, "res_t"+str(t_periods-1)] == "STABLE")
@@ -1536,7 +1536,7 @@ def lri_balanced_player_game_all_pijk_upper_08(arr_pl_M_T_vars_init,
     
     print("k_stop={}, Perf_t={}, bool_equilibrium_nash_LRIx={}".format(
             k_stop_learning_LRIx, Perf_sum_Vi_LRIx, bool_equilibrium_nash_LRIx))
-    return arr_pl_M_T_K_vars, profils_stabilisation_LRIx, \
+    return arr_pl_M_T_K_vars_modif, profils_stabilisation_LRIx, \
             k_stop_learning_LRIx, bool_equilibrium_nash_LRIx, \
             Perf_sum_Vi_LRIx
 
@@ -1753,7 +1753,9 @@ def test_lri_balanced_player_game_all_pijk_upper_08_Pi_Ci_NEW_AUTOMATE():
                                 path_to_save=path_to_save, 
                                 manual_debug=manual_debug, 
                                 dbg=False)
-    return arr_pl_M_T_K_vars_modif  
+    return arr_pl_M_T_K_vars_modif, profils_stabilisation_LRIx, \
+            k_stop_learning_LRIx, bool_equilibrium_nash_LRIx, \
+                Perf_sum_Vi_LRIx  
 
 ###############################################################################
 #                   Execution
@@ -1762,7 +1764,9 @@ def test_lri_balanced_player_game_all_pijk_upper_08_Pi_Ci_NEW_AUTOMATE():
 if __name__ == "__main__":
     ti = time.time()
     
-    arr_pl_M_T_K_vars_modif \
+    arr_pl_M_T_K_vars_modif, profils_stabilisation_LRIx, \
+    k_stop_learning_LRIx, bool_equilibrium_nash_LRIx, \
+    Perf_sum_Vi_LRIx  \
         = test_lri_balanced_player_game_all_pijk_upper_08_Pi_Ci_NEW_AUTOMATE()
     
     print("runtime = {}".format(time.time() - ti))
