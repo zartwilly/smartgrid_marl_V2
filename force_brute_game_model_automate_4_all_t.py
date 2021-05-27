@@ -2702,7 +2702,7 @@ def find_best_bad_mid_profils_Perfs(list_dico):
     
     for tupleX in list_dico:
         dico = tupleX[1]
-        print("mode_profile={}".format(dico["mode_profile"]))
+        #print("mode_profile={}".format(dico["mode_profile"]))
         X_profils.append( dico["mode_profile"] )
         X_Perfs.append( dico["Perf_t"] )
     return X_profils, X_Perfs
